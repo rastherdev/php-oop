@@ -12,7 +12,7 @@ $sale->addConcept($concept2);
 $saleOnline1 = new OnlineSale('https://example.com', 30, '2023-10-03', 'Credit Card');
 $saleOnline1->addConcept(new Concept('Product 3', 15.0, 2));
 // create invoice for sale 1
-echo $saleOnline1->createInvoice();
+//echo $saleOnline1->createInvoice();
 // show info total for sale 1
 echo $saleOnline1->showInfoTotal();
 $saleOnline2 = new OnlineSale('https://example.com', 40, '2023-10-04', 'PayPal');
@@ -41,9 +41,10 @@ class Sale
     public function addConcept(Concept $concept): void
     {
         $this->concepts[] = $concept;
+        $this->createInvoice();
     }
 
-    public function createInvoice(): string
+    private function createInvoice(): string
     {
         // code to create invoice
         return "Invoice created with total";
@@ -52,6 +53,16 @@ class Sale
     public static function resetCount()
     {
         self::$count = 0;
+    }
+
+    // add getter and setter for date
+    public function getDate(): string
+    {
+        return $this->date;
+    }
+    public function setDate(string $date): void
+    {
+        $this->date = $date;
     }
 
     // destructor
