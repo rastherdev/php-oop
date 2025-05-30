@@ -9,15 +9,26 @@ trait EmailSender
 }
 trait Logger
 {
-    public function log(string $message): string
+    public function log(string $message, string $file)
     {
-        // Simulate logging a message
-        return "Log: {$message}";
+       // addfile and message validation
+        if (empty($file) || empty($message)) {
+            return "File name and message cannot be empty.";
+        }
+        // Simulate logging to a file
+        // add message to file
+        file_put_contents($file, $message . PHP_EOL, FILE_APPEND);
+        return "Logged message: '{$message}' to file: '{$file}'";
     }
 }
 
 class Invoice{
     use EmailSender, Logger;
+
+    public function create(){
+        $this->log("Creating invoice", "invoice.log");
+        return "Invoice created.";
+    }
 }
 
 $invoice = new Invoice();
