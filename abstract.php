@@ -1,8 +1,8 @@
 <?php
 
 $beer1 = new Beer("IPA", 5.0, 10, "Ale");
-$beer2 = new Beer("Stout", 6.0, 5, "Dark");
-$beer2->calculateTotal(); // Example usage of calculateTotal method
+$beer2 = new Beer("Stout", 6.0, 1000, "Dark");
+echo $beer2->calculateTotal(); // Example usage of calculateTotal method
 
 abstract class Product{
     protected string $name;
